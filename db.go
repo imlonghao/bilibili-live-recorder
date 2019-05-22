@@ -37,7 +37,7 @@ type Danmaku struct {
 	UP        uint `gorm:"index:up"`
 	User      User `gorm:"foreignkey:UserRefer"`
 	UserRefer uint `gorm:"index:user"`
-	Kimo      bool
+	Kimo      uint `gorm:"type:tinyint(1)"`
 	Comment   string
 	CreatedAt time.Time `gorm:"index:time"`
 }
