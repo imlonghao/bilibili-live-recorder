@@ -112,14 +112,14 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 			log.Printf("%d - %s: %s\n", c.room, cmd.Info[2][1], danmaku.Info[1])
 			go sendLog([]byte(fmt.Sprintf("{\"CMD\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"user\": %d, \"message\": \"%s\"}", cmd.Info[0][9].(uint) == 1, c.room, cmd.Info[2][0].(uint), danmaku.Info[1])))
 			user := User{
-				ID:   uint(cmd.Info[2][0].(float64)),
+				ID:   cmd.Info[2][0].(uint),
 				Name: cmd.Info[2][1].(string),
 			}
 			go db.Save(&user)
 			d := Danmaku{
 				UP:        c.room,
 				UserRefer: user.ID,
-				Kimo:      uint(cmd.Info[0][9].(float64)) == 1,
+				Kimo:      cmd.Info[2][0].(uint) == 1,
 				Comment:   danmaku.Info[1],
 			}
 			go db.Create(&d)
