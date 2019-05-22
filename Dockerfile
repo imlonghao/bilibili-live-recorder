@@ -11,3 +11,4 @@ LABEL maintainer="imlonghao <dockerfile@esd.cc>"
 RUN apk --no-cache add ca-certificates tzdata
 COPY --from=builder /bilibili-live-recorder .
 CMD ["/bilibili-live-recorder"]
+EXPOSE 8080
