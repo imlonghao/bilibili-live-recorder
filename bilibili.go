@@ -110,7 +110,7 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 			var danmaku danmakuJSON
 			json.Unmarshal(body, &danmaku)
 			log.Printf("%d - %s: %s\n", c.room, cmd.Info[2][1], danmaku.Info[1])
-			go sendLog([]byte(fmt.Sprintf("{\"CMD\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"uid\": %d, \"message\": \"%s\"}", uint(cmd.Info[0][9].(float64)) == 1, c.room, uint(cmd.Info[2][0].(float64)), danmaku.Info[1])))
+			go sendLog([]byte(fmt.Sprintf("{\"cmd\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"uid\": %d, \"message\": \"%s\"}", uint(cmd.Info[0][9].(float64)) == 1, c.room, uint(cmd.Info[2][0].(float64)), danmaku.Info[1])))
 			user := User{
 				ID:   uint(cmd.Info[2][0].(float64)),
 				Name: cmd.Info[2][1].(string),
