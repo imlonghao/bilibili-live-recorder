@@ -37,6 +37,6 @@ steps:
       workingDirectory: "$(modulePath)"
     displayName: "Build"
   - script: |
-      curl -X POST $env:DOCKERHUB > /dev/null 2>&1
+      curl -X POST $(DOCKERHUB)
     condition: not(eq(variables['Build.Reason'], 'PullRequest'))
     displayName: "Trigger Docker Hub Auto-Build"
