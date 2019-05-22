@@ -89,7 +89,6 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 	buf := bytes.NewReader(h)
 	binary.Read(buf, binary.BigEndian, &head)
 	body := message[16:head.Length]
-	go sendLog(body)
 	switch head.Type {
 	case wsHeartbeatReply:
 		var rqz renqizhi
@@ -103,11 +102,15 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 	case wsMessage:
 		var cmd cmdJSON
 		_ = json.Unmarshal(body, &cmd)
+		if cmd.Cmd != "DANMU_MSG" {
+			go sendLog(body)
+		}
 		switch cmd.Cmd {
 		case "DANMU_MSG":
 			var danmaku danmakuJSON
 			json.Unmarshal(body, &danmaku)
 			log.Printf("%d - %s: %s\n", c.room, cmd.Info[2][1], danmaku.Info[1])
+			go sendLog([]byte(fmt.Sprintf("{\"CMD\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"user\": %d, \"message\": \"%s\"}", cmd.Info[0][9].(uint) == 1, c.room, cmd.Info[2][0].(uint), danmaku.Info[1])))
 			user := User{
 				ID:   uint(cmd.Info[2][0].(float64)),
 				Name: cmd.Info[2][1].(string),
