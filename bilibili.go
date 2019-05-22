@@ -110,16 +110,16 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 			var danmaku danmakuJSON
 			json.Unmarshal(body, &danmaku)
 			log.Printf("%d - %s: %s\n", c.room, cmd.Info[2][1], danmaku.Info[1])
-			go sendLog([]byte(fmt.Sprintf("{\"CMD\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"user\": %d, \"message\": \"%s\"}", cmd.Info[0][9].(uint) == 1, c.room, cmd.Info[2][0].(uint), danmaku.Info[1])))
+			go sendLog([]byte(fmt.Sprintf("{\"CMD\": \"DANMU_MSG\", \"kimo\": %t, \"roomid\": %d, \"uid\": %d, \"message\": \"%s\"}", uint(cmd.Info[0][9].(float64)) == 1, c.room, uint(cmd.Info[2][0].(float64)), danmaku.Info[1])))
 			user := User{
-				ID:   cmd.Info[2][0].(uint),
+				ID:   uint(cmd.Info[2][0].(float64)),
 				Name: cmd.Info[2][1].(string),
 			}
 			go db.Save(&user)
 			d := Danmaku{
 				UP:        c.room,
 				UserRefer: user.ID,
-				Kimo:      cmd.Info[2][0].(uint) == 1,
+				Kimo:      uint(cmd.Info[0][9].(float64)) == 1,
 				Comment:   danmaku.Info[1],
 			}
 			go db.Create(&d)
