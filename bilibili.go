@@ -89,6 +89,7 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 	buf := bytes.NewReader(h)
 	binary.Read(buf, binary.BigEndian, &head)
 	body := message[16:head.Length]
+	go sendLog(body)
 	switch head.Type {
 	case wsHeartbeatReply:
 		var rqz renqizhi

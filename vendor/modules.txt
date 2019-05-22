@@ -1,3 +1,7 @@
+# github.com/beeker1121/goque v2.0.1+incompatible
+github.com/beeker1121/goque
+# github.com/dougEfresh/logzio-go v0.0.0-20180508072043-37b24151b963
+github.com/dougEfresh/logzio-go
 # github.com/gin-contrib/sse v0.0.0-20190301062529-5545eab6dad3
 github.com/gin-contrib/sse
 # github.com/gin-gonic/gin v1.4.0
@@ -9,6 +13,8 @@ github.com/gin-gonic/gin/render
 github.com/go-sql-driver/mysql
 # github.com/golang/protobuf v1.3.1
 github.com/golang/protobuf/proto
+# github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
+github.com/golang/snappy
 # github.com/gorilla/websocket v1.4.0
 github.com/gorilla/websocket
 # github.com/jinzhu/gorm v1.9.8
@@ -24,8 +30,25 @@ github.com/mattn/go-isatty
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.1
 github.com/modern-go/reflect2
+# github.com/ricochet2200/go-disk-usage v0.0.0-20150921141558-f0d1b743428f
+github.com/ricochet2200/go-disk-usage/du
+# github.com/syndtr/goleveldb v1.0.0
+github.com/syndtr/goleveldb/leveldb
+github.com/syndtr/goleveldb/leveldb/util
+github.com/syndtr/goleveldb/leveldb/cache
+github.com/syndtr/goleveldb/leveldb/comparer
+github.com/syndtr/goleveldb/leveldb/errors
+github.com/syndtr/goleveldb/leveldb/filter
+github.com/syndtr/goleveldb/leveldb/iterator
+github.com/syndtr/goleveldb/leveldb/journal
+github.com/syndtr/goleveldb/leveldb/memdb
+github.com/syndtr/goleveldb/leveldb/opt
+github.com/syndtr/goleveldb/leveldb/storage
+github.com/syndtr/goleveldb/leveldb/table
 # github.com/ugorji/go v1.1.4
 github.com/ugorji/go/codec
+# go.uber.org/atomic v1.4.0
+go.uber.org/atomic
 # golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223
 golang.org/x/sys/unix
 # google.golang.org/appengine v1.4.0
