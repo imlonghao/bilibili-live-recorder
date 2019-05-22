@@ -2,7 +2,7 @@ FROM golang:1.12-alpine AS builder
 LABEL maintainer="imlonghao <dockerfile@esd.cc>"
 WORKDIR /builder
 RUN apk add upx && \
-    GO111MODULE=on go build -ldflags="-s -w" -o /bilibili-live-recorder
+    GO111MODULE=on go build -mod=vendor -ldflags="-s -w" -o /bilibili-live-recorder
     upx --ultra-brute /bilibili-live-recorder
 
 FROM alpine:latest
