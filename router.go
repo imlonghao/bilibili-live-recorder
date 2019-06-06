@@ -65,7 +65,7 @@ func giftsNonFreeHandler(c *gin.Context) {
 		}
 		end = time.Unix(endInt, 0)
 	}
-	db.Table("gifts").Select("sum(value) as n").Where("up = ? AND type = 1 AND created_at > ? AND created_at < ?", id, start, end).Pluck("n", &r)
+	db.Table("gifts").Select("sum(price) as n").Where("up = ? AND type = 1 AND created_at > ? AND created_at < ?", id, start, end).Pluck("n", &r)
 	c.JSON(200, r[0])
 }
 
@@ -96,6 +96,6 @@ func giftsFreeHandler(c *gin.Context) {
 		}
 		end = time.Unix(endInt, 0)
 	}
-	db.Table("gifts").Select("sum(value) as n").Where("up = ? AND type = 0 AND created_at > ? AND created_at < ?", id, start, end).Pluck("n", &r)
+	db.Table("gifts").Select("sum(price) as n").Where("up = ? AND type = 0 AND created_at > ? AND created_at < ?", id, start, end).Pluck("n", &r)
 	c.JSON(200, r[0])
 }
