@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"strconv"
+	"time"
 )
 
 func addRoomHandler(c *gin.Context) {
@@ -35,4 +36,66 @@ func listRoomHandler(c *gin.Context) {
 	var rooms []Room
 	db.Find(&rooms)
 	c.JSON(200, rooms)
+}
+
+func giftsNonFreeHandler(c *gin.Context) {
+	var r int64
+	var start time.Time
+	var end time.Time
+	id := c.Param("id")
+	startString := c.Query("start")
+	endString := c.Query("end")
+	if startString == "" {
+		start = time.Now().Add(-time.Hour * 1)
+	} else {
+		startInt, err := strconv.ParseInt(startString, 10, 64)
+		if err != nil {
+			c.JSON(500, gin.H{})
+			return
+		}
+		start = time.Unix(startInt, 0)
+	}
+	if startString == "" {
+		end = time.Now()
+	} else {
+		endInt, err := strconv.ParseInt(endString, 10, 64)
+		if err != nil {
+			c.JSON(500, gin.H{})
+			return
+		}
+		end = time.Unix(endInt, 0)
+	}
+	db.Table("gifts").Select("sum(value) sum").Where("up = ? AND type = 1 AND created_at > ? AND created_at < ?", id, start, end).Pluck("sum", &r)
+	c.JSON(200, r)
+}
+
+func giftsFreeHandler(c *gin.Context) {
+	var r int64
+	var start time.Time
+	var end time.Time
+	id := c.Param("id")
+	startString := c.Query("start")
+	endString := c.Query("end")
+	if startString == "" {
+		start = time.Now().Add(-time.Hour * 1)
+	} else {
+		startInt, err := strconv.ParseInt(startString, 10, 64)
+		if err != nil {
+			c.JSON(500, gin.H{})
+			return
+		}
+		start = time.Unix(startInt, 0)
+	}
+	if startString == "" {
+		end = time.Now()
+	} else {
+		endInt, err := strconv.ParseInt(endString, 10, 64)
+		if err != nil {
+			c.JSON(500, gin.H{})
+			return
+		}
+		end = time.Unix(endInt, 0)
+	}
+	db.Table("gifts").Select("sum(value) sum").Where("up = ? AND type = 0 AND created_at > ? AND created_at < ?", id, start, end).Pluck("sum", &r)
+	c.JSON(200, r)
 }

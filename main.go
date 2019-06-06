@@ -13,5 +13,7 @@ func main() {
 	r := gin.Default()
 	r.POST("/room", addRoomHandler)
 	r.GET("/room", listRoomHandler)
+	r.GET("/gifts/nonfree/:id", giftsNonFreeHandler)
+	r.GET("/gifts/free/:id", giftsFreeHandler)
 	r.Run()
 }
