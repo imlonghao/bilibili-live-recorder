@@ -39,7 +39,7 @@ func listRoomHandler(c *gin.Context) {
 }
 
 func giftsNonFreeHandler(c *gin.Context) {
-	var r int64
+	var r []int64
 	var start time.Time
 	var end time.Time
 	id := c.Param("id")
@@ -66,11 +66,11 @@ func giftsNonFreeHandler(c *gin.Context) {
 		end = time.Unix(endInt, 0)
 	}
 	db.Table("gifts").Select("sum(value) sum").Where("up = ? AND type = 1 AND created_at > ? AND created_at < ?", id, start, end).Pluck("sum", &r)
-	c.JSON(200, r)
+	c.JSON(200, r[0])
 }
 
 func giftsFreeHandler(c *gin.Context) {
-	var r int64
+	var r []int64
 	var start time.Time
 	var end time.Time
 	id := c.Param("id")
@@ -97,5 +97,5 @@ func giftsFreeHandler(c *gin.Context) {
 		end = time.Unix(endInt, 0)
 	}
 	db.Table("gifts").Select("sum(value) sum").Where("up = ? AND type = 0 AND created_at > ? AND created_at < ?", id, start, end).Pluck("sum", &r)
-	c.JSON(200, r)
+	c.JSON(200, r[0])
 }
