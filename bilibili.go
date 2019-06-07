@@ -59,6 +59,20 @@ type giftJSON struct {
 	} `json:"data"`
 }
 
+type guardJSON struct {
+	Data struct {
+		UID        uint   `json:"uid"`
+		Username   string `json:"username"`
+		GuardLevel int    `json:"guard_level"`
+		Num        uint   `json:"num"`
+		Price      uint   `json:"price"`
+		GiftID     int    `json:"gift_id"`
+		GiftName   string `json:"gift_name"`
+		StartTime  int    `json:"start_time"`
+		EndTime    int    `json:"end_time"`
+	} `json:"data"`
+}
+
 type bilibiliClient struct {
 	room uint
 	ws   *websocket.Conn
@@ -140,6 +154,25 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 				Number:    g.Data.Num,
 				Price:     g.Data.TotalCoin,
 				Remain:    g.Data.Remain,
+			}
+			go db.Create(&gift)
+		case "GUARD_BUY":
+			var g guardJSON
+			json.Unmarshal(body, &g)
+			log.Printf("%d - %s: %s (%s) x %d\n", c.room, g.Data.Username, g.Data.GiftName, "gold", g.Data.Num)
+			user := User{
+				ID:   g.Data.UID,
+				Name: g.Data.Username,
+			}
+			go db.Save(&user)
+			gift := Gift{
+				UP:        c.room,
+				UserRefer: g.Data.UID,
+				Type:      true,
+				Name:      g.Data.GiftName,
+				Number:    g.Data.Num,
+				Price:     g.Data.Price,
+				Remain:    0,
 			}
 			go db.Create(&gift)
 		}
