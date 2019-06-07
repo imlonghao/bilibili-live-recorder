@@ -40,6 +40,7 @@ steps:
     inputs:
       command: login
       containerRegistry: dockerhub
+    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
     displayName: Login to Docker Hub
   - task: Docker@2
     inputs:
