@@ -36,7 +36,15 @@ steps:
       arguments: "-mod=vendor"
       workingDirectory: "$(modulePath)"
     displayName: "Build"
-  - script: |
-      curl -X POST $(DOCKERHUB)
+  - task: Docker@2
+    inputs:
+      command: login
+      containerRegistry: dockerhub
+    displayName: Login to Docker Hub
+  - task: Docker@2
+    inputs:
+      command: buildAndPush
+      repository: imlonghao/bilibili-live-recorder
+      tags: latest
     condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-    displayName: "Trigger Docker Hub Auto-Build"
+    displayName: Build and Push
