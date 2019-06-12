@@ -49,3 +49,7 @@ steps:
       tags: latest
     condition: not(eq(variables['Build.Reason'], 'PullRequest'))
     displayName: Build and Push
+  - script: |
+      curl $(RANCHER_WEBHOOK) > /dev/null 2>&1
+    condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+    displayName: Rancher Re-deploy
