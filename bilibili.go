@@ -171,7 +171,7 @@ func (c *bilibiliClient) messageWorker(message []byte) {
 				Type:      true,
 				Name:      g.Data.GiftName,
 				Number:    g.Data.Num,
-				Price:     g.Data.Price,
+				Price:     g.Data.Price * g.Data.Num,
 				Remain:    0,
 			}
 			go db.Create(&gift)
