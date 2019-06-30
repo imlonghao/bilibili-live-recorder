@@ -7,7 +7,7 @@ require (
 	github.com/dougEfresh/logzio-go v0.0.0-20180508072043-37b24151b963
 	github.com/gin-gonic/gin v1.4.0
 	github.com/gorilla/websocket v1.4.0
-	github.com/jinzhu/gorm v1.9.9
+	github.com/jinzhu/gorm v1.9.10
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/ricochet2200/go-disk-usage v0.0.0-20150921141558-f0d1b743428f // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
