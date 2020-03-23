@@ -4,7 +4,7 @@ github.com/beeker1121/goque
 github.com/dougEfresh/logzio-go
 # github.com/gin-contrib/sse v0.1.0
 github.com/gin-contrib/sse
-# github.com/gin-gonic/gin v1.6.0
+# github.com/gin-gonic/gin v1.6.1
 github.com/gin-gonic/gin
 github.com/gin-gonic/gin/binding
 github.com/gin-gonic/gin/internal/bytesconv
