@@ -23,7 +23,7 @@ github.com/go-sql-driver/mysql
 github.com/golang/protobuf/proto
 # github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
 github.com/golang/snappy
-# github.com/gorilla/websocket v1.4.2
+# github.com/gorilla/websocket v1.5.0
 github.com/gorilla/websocket
 # github.com/jinzhu/gorm v1.9.14
 github.com/jinzhu/gorm
@@ -44,7 +44,6 @@ github.com/modern-go/reflect2
 github.com/ricochet2200/go-disk-usage/du
 # github.com/syndtr/goleveldb v1.0.0
 github.com/syndtr/goleveldb/leveldb
-github.com/syndtr/goleveldb/leveldb/util
 github.com/syndtr/goleveldb/leveldb/cache
 github.com/syndtr/goleveldb/leveldb/comparer
 github.com/syndtr/goleveldb/leveldb/errors
@@ -55,6 +54,7 @@ github.com/syndtr/goleveldb/leveldb/memdb
 github.com/syndtr/goleveldb/leveldb/opt
 github.com/syndtr/goleveldb/leveldb/storage
 github.com/syndtr/goleveldb/leveldb/table
+github.com/syndtr/goleveldb/leveldb/util
 # github.com/ugorji/go/codec v1.1.7
 github.com/ugorji/go/codec
 # go.uber.org/atomic v1.4.0
