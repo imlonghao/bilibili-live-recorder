@@ -1,4 +1,4 @@
-FROM golang:1.14-alpine AS builder
+FROM golang:1.19-alpine AS builder
 LABEL maintainer="imlonghao <dockerfile@esd.cc>"
 WORKDIR /builder
 COPY . /builder
