@@ -36,13 +36,13 @@ steps:
       arguments: "-mod=vendor"
       workingDirectory: "$(modulePath)"
     displayName: "Build"
-  - task: Docker@2
+  - task: Docker@2.211.0
     inputs:
       command: login
       containerRegistry: dockerhub
     condition: not(eq(variables['Build.Reason'], 'PullRequest'))
     displayName: Login to Docker Hub
-  - task: Docker@2
+  - task: Docker@2.211.0
     inputs:
       command: buildAndPush
       repository: imlonghao/bilibili-live-recorder
