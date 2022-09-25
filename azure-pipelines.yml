@@ -30,7 +30,7 @@ steps:
       shopt -s extglob
       mv !(gopath) $(modulePath)
     displayName: "Setup"
-  - task: Go@0
+  - task: Go@0.210.0
     inputs:
       command: "build"
       arguments: "-mod=vendor"
