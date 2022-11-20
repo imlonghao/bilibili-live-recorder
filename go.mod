@@ -1,6 +1,6 @@
 module github.com/imlonghao/bilibili-live-recorder
 
-go 1.12
+go 1.19
 
 require (
 	github.com/beeker1121/goque v2.0.1+incompatible // indirect
